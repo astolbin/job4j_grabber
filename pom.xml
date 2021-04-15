@@ -5,10 +5,9 @@
   <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.job4j</groupId>
-    <artifactId>grabber</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>job4j_grabber</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>grabber</name>
+    <name>job4j_grabber</name>
 
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
@@ -58,7 +57,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.5</version>
+                <version>0.8.6</version>
                 <executions>
                     <execution>
                         <goals>
