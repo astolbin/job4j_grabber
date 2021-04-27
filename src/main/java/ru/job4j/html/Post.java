@@ -46,4 +46,14 @@ public class Post {
     public void setCreate(LocalDateTime create) {
         this.create = create;
     }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "name='" + name + '\'' +
+                ", text='" + text + '\'' +
+                ", link='" + link + '\'' +
+                ", create=" + create +
+                '}';
+    }
 }
