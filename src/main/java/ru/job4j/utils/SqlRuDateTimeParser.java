@@ -60,7 +60,7 @@ public class SqlRuDateTimeParser implements DateTimeParser {
     }
 
     private LocalDateTime parseDateTime(String parse, String format) {
-        Locale locale = new Locale("ru" , "RU");
+        Locale locale = new Locale("ru", "RU");
         DateTimeFormatter pattern = DateTimeFormatter.ofPattern(format, locale);
 
         return LocalDateTime.parse(parse, pattern);
