@@ -3,6 +3,7 @@ package ru.job4j.grabber;
 import java.time.LocalDateTime;
 
 public class Post {
+    private int id;
     private String name;
     private String text;
     private String link;
@@ -45,6 +46,14 @@ public class Post {
 
     public void setCreate(LocalDateTime create) {
         this.create = create;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
