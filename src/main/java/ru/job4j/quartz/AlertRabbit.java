@@ -13,7 +13,7 @@ import static org.quartz.SimpleScheduleBuilder.*;
 
 public class AlertRabbit {
     public static void main(String[] args) {
-        Properties config = getScheduleProps("rabbit.properties");
+        Properties config = getScheduleProps("app.properties");
 
         try (Connection connection = getConnection(config)) {
             Scheduler scheduler = initScheduler(config, connection);
@@ -36,7 +36,7 @@ public class AlertRabbit {
                 .usingJobData(data)
                 .build();
 
-        int interval = Integer.parseInt(config.getProperty("rabbit.interval"));
+        int interval = Integer.parseInt(config.getProperty("grab.interval"));
         SimpleScheduleBuilder times = simpleSchedule()
                 .withIntervalInSeconds(interval)
                 .repeatForever();

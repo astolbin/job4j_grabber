@@ -10,9 +10,10 @@ import java.util.Properties;
 
 public class PsqlStore implements Store, AutoCloseable {
     private final Connection cnn;
+    private final static int TEXT_MAX_LENGTH = 2000;
 
     public static void main(String[] args) throws Exception {
-        Properties cfg = getConfig("rabbit.properties");
+        Properties cfg = getConfig("app.properties");
 
         try (PsqlStore store = new PsqlStore(cfg)) {
             for (int i = 1; i < 4; i++) {
@@ -49,10 +50,13 @@ public class PsqlStore implements Store, AutoCloseable {
         String sql = "insert into post (name, text, link, created) values (?, ?, ?, ?)";
 
         try (PreparedStatement statement =
-                     cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
-        {
+                     cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            String text = post.getText();
+            if (text.length() >= TEXT_MAX_LENGTH) {
+                text = text.substring(0, TEXT_MAX_LENGTH);
+            }
             statement.setString(1, post.getName());
-            statement.setString(2, post.getText());
+            statement.setString(2, text);
             statement.setString(3, post.getLink());
             statement.setTimestamp(4, Timestamp.valueOf(post.getCreate()));
             statement.executeUpdate();
